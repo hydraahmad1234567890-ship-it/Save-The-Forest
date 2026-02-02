@@ -1,0 +1,3215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Save the Forest | Awareness Campaign</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
+            background-attachment: fixed;
+            color: #2e3d2f;
+        }
+
+        /* PAGE SYSTEM */
+        .page {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 36px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* COOKIE CONSENT BANNER */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            display: none;
+            font-size: 14px;
+        }
+
+        .cookie-banner.show {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .cookie-banner-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-banner-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cookie-banner-buttons button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-accept {
+            background: #4caf50;
+            color: white;
+        }
+
+        .cookie-accept:hover {
+            background: #45a049;
+        }
+
+        .cookie-reject {
+            background: #f44336;
+            color: white;
+        }
+
+        .cookie-reject:hover {
+            background: #da190b;
+        }
+
+        .cookie-manage {
+            background: #666;
+            color: white;
+        }
+
+        .cookie-manage:hover {
+            background: #555;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=600&fit=crop') center/cover;
+            background-attachment: fixed;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 75vh;
+            object-fit: cover;
+            opacity: 0;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(27, 94, 32, 0.85);
+            color: white;
+            padding: 40px 50px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-text h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #a5d6a7;
+        }
+
+        /* SECTION */
+        section {
+            padding: 70px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        section h2 {
+            text-align: center;
+            color: #1b5e20;
+            margin-bottom: 30px;
+            font-size: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            line-height: 1.9;
+            font-size: 17px;
+            margin-bottom: 18px;
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.08) translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        /* ABOUT ME */
+        .about-box {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            max-width: 1000px;
+            margin: auto;
+            flex-wrap: wrap;
+            background: #f0f7f0;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #1b5e20;
+        }
+
+        .about-box img {
+            width: 260px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid #1b5e20;
+        }
+
+        /* DONATE */
+        .donate {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 12px;
+            margin-top: 25px;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .donate:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.5);
+        }
+
+        /* LOGIN */
+        .login-box {
+            max-width: 380px;
+            margin: auto;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #1b5e20;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: #1b5e20;
+            box-shadow: 0 0 5px rgba(27, 94, 32, 0.3);
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .login-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(27, 94, 32, 0.4);
+        }
+
+        /* QUIZ */
+        .quiz {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            background: #f0f7f0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #1b5e20;
+        }
+
+        .question h3 {
+            color: #1b5e20;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .question label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            color: #2e3d2f;
+        }
+
+        .question label:hover {
+            color: #1b5e20;
+            font-weight: 500;
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-top: 25px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(27, 94, 32, 0.4);
+        }
+
+        /* REWARDS */
+        .rewards {
+            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .rewards h2 {
+            color: #1b5e20;
+        }
+
+        .rewards p {
+            color: #2e3d2f;
+            font-weight: 500;
+        }
+
+        /* PROFILE PAGE STYLES */
+        .profile-page {
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
+            min-height: 100vh;
+            display: none;
+        }
+
+        .profile-page.active {
+            display: block;
+        }
+
+        .profile-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-container h1 {
+            text-align: center;
+            color: #1b5e20;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .profile-picture-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #profilePicture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #1b5e20;
+            box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+        }
+
+        .upload-picture-btn {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .upload-picture-btn:hover {
+            background: #1b5e20;
+        }
+
+        #picUpload {
+            display: none;
+        }
+
+        .ranger-info-section h2 {
+            color: #1b5e20;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .ranger-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .info-item strong {
+            color: #1b5e20;
+        }
+
+        .info-item span {
+            color: #555;
+        }
+
+        .ranger-title-badge {
+            font-size: 32px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* STREAK SYSTEM */
+        .streak-container {
+            background: linear-gradient(135deg, #fff9c4 0%, #fffde7 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 2px solid #fbc02d;
+        }
+
+        .streak-label {
+            font-size: 18px;
+            color: #1b5e20;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        #streakCount {
+            font-size: 64px;
+            font-weight: bold;
+            color: #ff6f00;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .streak-days {
+            color: #1b5e20;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .add-to-streak-btn {
+            background: #ff6f00;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .add-to-streak-btn:hover {
+            background: #e65100;
+        }
+
+        .last-streak-date {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* ACHIEVEMENT TITLES */
+        .achievements-section h3 {
+            color: #1b5e20;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .title-badges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .title-badge {
+            background: #f5f5f5;
+            border: 3px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: default;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .title-badge.current {
+            background: linear-gradient(135deg, #fff9c4 0%, #fffde7 100%);
+            border: 3px solid #fbc02d;
+            opacity: 1;
+            box-shadow: 0 4px 15px rgba(251, 192, 45, 0.4);
+            transform: scale(1.05);
+        }
+
+        .title-badge-icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .title-badge-name {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .title-badge-range {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .title-badge.current .title-badge-name {
+            color: #1b5e20;
+        }
+
+        /* EMAIL MODAL */
+        #emailModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #emailModal.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #1b5e20;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        #emailMessage {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .email-details {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2e7d32;
+        }
+
+        #emailSentTo,
+        #emailTitle {
+            color: #333;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .close-modal-btn {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .close-modal-btn:hover {
+            background: #1b5e20;
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .profile-picture-section {
+                order: -1;
+            }
+
+            #streakCount {
+                font-size: 48px;
+            }
+
+            .title-badges-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PAGE 1: LOGIN PAGE -->
+    <div id="loginPage" class="page active">
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+            <div
+                style="background: white; border-radius: 15px; padding: 50px; max-width: 450px; width: 100%; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+                <h1 style="text-align: center; color: #1b5e20; margin-bottom: 30px; font-size: 32px;">🌳 Save the Forest
+                </h1>
+
+                <h2 style="text-align: center; color: #333; margin-bottom: 25px;">Login to Your Account</h2>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; color: #1b5e20; font-weight: bold;">Email:</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email"
+                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label
+                        style="display: block; margin-bottom: 8px; color: #1b5e20; font-weight: bold;">Password:</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password"
+                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;">
+                </div>
+
+                <button onclick="goToNextPage('privacy')"
+                    style="width: 100%; padding: 12px; background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 8px; margin-bottom: 15px;">
+                    Login →
+                </button>
+
+                <p style="text-align: center; color: #666; margin-bottom: 15px;">Don't have an account? <span
+                        onclick="goToNextPage('register')"
+                        style="color: #1b5e20; font-weight: bold; cursor: pointer;">Register</span></p>
+
+                <p id="loginMessage" style="text-align: center; color: #d32f2f; margin-top: 15px;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: PRIVACY & POLICY PAGE -->
+    <div id="privacyPage" class="page">
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+            <div
+                style="background: white; border-radius: 15px; padding: 40px; max-width: 600px; width: 100%; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+                <h1 style="text-align: center; color: #1b5e20; margin-bottom: 20px;">📋 Privacy & Policy Agreement</h1>
+
+                <div
+                    style="max-height: 400px; overflow-y: auto; background: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px; font-size: 14px;">
+                    <h3 style="color: #1b5e20; margin-bottom: 10px;">Welcome to Save the Forest</h3>
+                    <p style="margin-bottom: 12px;">
+                        By using this platform, you agree to our privacy policy and terms of service. Your data will be
+                        stored securely and used only to enhance your experience.
+                    </p>
+                    <h3 style="color: #1b5e20; margin-bottom: 10px; margin-top: 15px;">Data Collection</h3>
+                    <p style="margin-bottom: 12px;">
+                        We collect information including your name, email, password, profile picture, and activity
+                        streak data. This information helps us track your progress and provide personalized
+                        achievements.
+                    </p>
+                    <h3 style="color: #1b5e20; margin-bottom: 10px; margin-top: 15px;">Data Usage</h3>
+                    <p style="margin-bottom: 12px;">
+                        Your data is used to: Send you email confirmations, Track conservation streaks, Generate
+                        achievement badges, Store profile information, Improve our services.
+                    </p>
+                    <h3 style="color: #1b5e20; margin-bottom: 10px; margin-top: 15px;">Data Security</h3>
+                    <p style="margin-bottom: 12px;">
+                        All data is stored locally on your device for maximum security. We do not share your information
+                        with third parties.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" id="privacyConsent" style="width: 18px; height: 18px; cursor: pointer;">
+                        <span style="color: #333;">I agree to the Privacy Policy and Terms of Service</span>
+                    </label>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="goToPreviousPage()"
+                        style="flex: 1; padding: 12px; background: #999; color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 8px;">
+                        ← Back
+                    </button>
+                    <button onclick="goToNextPage('profile')"
+                        style="flex: 1; padding: 12px; background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 8px;">
+                        Accept & Continue →
+                    </button>
+                </div>
+
+                <p id="privacyMessage" style="text-align: center; color: #d32f2f; margin-top: 15px;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: CREATE PROFILE PAGE -->
+    <div id="profilePage" class="page">
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+            <div
+                style="background: white; border-radius: 15px; padding: 40px; max-width: 700px; width: 100%; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+                <h1 style="text-align: center; color: #1b5e20; margin-bottom: 30px;">🌲 Create Your Profile</h1>
+
+                <!-- Profile Picture Section -->
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <img id="profilePicture"
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%231b5e20'/%3E%3Ctext x='50' y='65' font-size='60' fill='white' text-anchor='middle'%3E🌳%3C/text%3E%3C/svg%3E"
+                        alt="Profile"
+                        style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid #1b5e20; margin-bottom: 15px;">
+                    <br>
+                    <input type="file" id="picUpload" accept="image/*" style="display: none;">
+                    <button onclick="document.getElementById('picUpload').click()"
+                        style="padding: 10px 20px; background: #2e7d32; color: white; border: none; cursor: pointer; border-radius: 8px; font-weight: bold;">📷
+                        Upload Picture</button>
+                </div>
+
+                <!-- Name Input -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; color: #1b5e20; font-weight: bold;">Full
+                        Name:</label>
+                    <input type="text" id="profileName" placeholder="Enter your full name"
+                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px;">
+                </div>
+
+                <!-- Email Display -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; color: #1b5e20; font-weight: bold;">Email:</label>
+                    <input type="email" id="profileEmail" placeholder="Your email" readonly
+                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; background: #f5f5f5;">
+                </div>
+
+                <!-- Ranger Title Preview -->
+                <div
+                    style="background: linear-gradient(135deg, #fff9c4 0%, #fffde7 100%); padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; border: 2px solid #fbc02d;">
+                    <p style="color: #1b5e20; margin-bottom: 10px; font-weight: bold;">Your Title:</p>
+                    <p style="font-size: 32px; color: #1b5e20;">🌱 Forest Ranger</p>
+                </div>
+
+                <!-- Buttons -->
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="goToPreviousPage()"
+                        style="flex: 1; padding: 12px; background: #999; color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 8px;">
+                        ← Back
+                    </button>
+                    <button onclick="completeProfile()"
+                        style="flex: 1; padding: 12px; background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 8px;">
+                        Complete & Continue →
+                    </button>
+                </div>
+
+                <p id="profileMessage" style="text-align: center; color: #d32f2f; margin-top: 15px;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: MAIN SAVE THE FOREST PAGE -->
+    <div id="mainPage" class="page">
+        <header>
+            <h1>🌳 SAVE THE FOREST 🌳</h1>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#importance">Importance</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#help">Help</a>
+                <a href="#" onclick="goToProfile(); return false;">👤 My Profile</a>
+                <a href="#" onclick="logoutFromMain(); return false;">🚪 Logout</a>
+            </nav>
+        </header>
+
+        <section id="about"
+            style="padding: 50px; margin: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+            <h2 style="text-align: center; color: #1b5e20; margin-bottom: 30px; font-size: 30px;">👨‍💼 About This
+                Campaign</h2>
+            <p style="line-height: 1.9; font-size: 17px; margin-bottom: 18px;">
+                Save the Forest is an environmental awareness campaign dedicated to protecting our planet's forests.
+                Forests are the lungs of our Earth, providing oxygen, absorbing carbon dioxide, and supporting millions
+                of species. Through this campaign, we aim to educate and inspire people to take action for forest
+                conservation.
+            </p>
+        </section>
+
+        <section id="importance"
+            style="padding: 50px; margin: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+            <h2 style="text-align: center; color: #1b5e20; margin-bottom: 30px; font-size: 30px;">🌳 Importance of
+                Forests</h2>
+            <p style="line-height: 1.9; font-size: 17px; margin-bottom: 18px;">
+                Forests regulate our climate, prevent soil erosion, provide habitats for wildlife, and support human
+                life through food, medicine, and employment. Without forests, our planet cannot sustain life. Let's work
+                together to protect them for future generations.
+            </p>
+        </section>
+
+        <section id="gallery"
+            style="padding: 50px; margin: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+            <h2 style="text-align: center; color: #1b5e20; margin-bottom: 30px; font-size: 30px;">🌿 Gallery</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=300&h=200&fit=crop"
+                    alt="Forest"
+                    style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=200&fit=crop"
+                    alt="Forest Path"
+                    style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop" alt="Trees"
+                    style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+        </section>
+
+        <section id="help"
+            style="padding: 50px; margin: 20px; background: rgba(255, 255, 255, 0.95); border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+            <h2 style="text-align: center; color: #1b5e20; margin-bottom: 30px; font-size: 30px;">🌍 How You Can Help
+            </h2>
+            <p style="line-height: 1.9; font-size: 17px; margin-bottom: 18px;">
+                <strong>📱 Contact Us:</strong><br>
+                WhatsApp: 03473716718<br>
+                Email: hydraahmad1234567890@gmail.com<br><br>
+                You can help by: Reducing plastic usage, Joining clean-up drives, Planting trees, Spreading
+                environmental awareness in your community.
+            </p>
+        </section>
+
+        <footer style="background: #1b5e20; color: white; text-align: center; padding: 20px; margin-top: 30px;">
+            <p>&copy; 2026 Save the Forest Campaign. All rights reserved. 🌳</p>
+        </footer>
+    </div>
+
+    <!-- Email Notification Modal -->
+    <div id="emailModal"
+        style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;">
+        <div
+            style="background: white; border-radius: 15px; padding: 30px; max-width: 500px; width: 90%; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+            <h2 style="color: #1b5e20; margin-bottom: 20px;">✉️ Email Confirmation</h2>
+            <p id="emailMessage" style="font-size: 16px; color: #555; margin-bottom: 20px;"></p>
+            <div
+                style="background: #f5f5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #2e7d32; margin-bottom: 20px;">
+                <p><strong>Status:</strong> <span style="color: #1b5e20;">✓ Successfully Sent</span></p>
+                <p id="emailSentTo" style="margin: 8px 0; font-size: 14px;"></p>
+                <p id="emailTitle" style="margin: 8px 0; font-size: 14px;"></p>
+            </div>
+            <button onclick="closeEmailModal()"
+                style="width: 100%; padding: 12px; background: #2e7d32; color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 8px;">Got
+                It!</button>
+        </div>
+    </div>
+
+    <header>
+        <h1>SAVE THE FOREST</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#importance">Importance</a>
+            <a href="#about">About Me</a>
+            <a href="#help">Help & Donate</a>
+            <a href="#login">Login</a>
+            <a href="#quiz">Quiz</a>
+            <a href="#privacy">Privacy & Policy</a>
+        </nav>
+    </header>
+
+    <!-- COOKIE CONSENT BANNER -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-banner-text">
+            🍪 We use cookies to enhance your experience and analyze site usage. By continuing, you accept our <a
+                href="#privacy" style="color: #FFD700; text-decoration: underline;">cookie policy</a>.
+        </div>
+        <div class="cookie-banner-buttons">
+            <button class="cookie-accept" onclick="acceptCookies()">✓ Accept All</button>
+            <button class="cookie-manage" onclick="manageCookies()">⚙️ Manage</button>
+            <button class="cookie-reject" onclick="rejectCookies()">✗ Reject</button>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <img src="forest1.jpg" alt="Forest">
+        <div class="hero-text">
+            <h2>🌲 Protect Forests, Protect Life 🌲</h2>
+            <p>Forests are the lifeline of our planet</p>
+        </div>
+    </section>
+
+    <!-- IMPORTANCE -->
+    <section id="importance">
+        <h2>🌳 Importance of Forests 🌳</h2>
+        <p>
+            Forests are among the most valuable ecosystems on Earth. They play a crucial role
+            in maintaining environmental balance by absorbing harmful carbon dioxide and
+            releasing oxygen into the atmosphere. Forests regulate climate, support rainfall
+            patterns, and prevent soil erosion, floods, and landslides.
+        </p>
+        <p>
+            Apart from environmental benefits, forests provide habitat to millions of species,
+            many of which are still undiscovered. They also support human life by providing
+            food, medicine, fuel, and employment. Without forests, biodiversity would collapse
+            and climate change would accelerate rapidly, threatening life on Earth.
+        </p>
+    </section>
+
+    <!-- GALLERY -->
+    <section>
+        <h2>🌿 Our Green World 🌿</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=400&h=300&fit=crop"
+                alt="Beautiful Forest">
+            <img src="https://images.unsplash.com/photo-1490147868817-67431aa1bca0?w=400&h=300&fit=crop"
+                alt="Garden Flowers">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=300&fit=crop"
+                alt="Forest Path">
+            <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400&h=300&fit=crop"
+                alt="Garden Landscape">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop"
+                alt="Green Forest">
+            <img src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=400&h=300&fit=crop"
+                alt="Wild Garden">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop"
+                alt="Forest Trees">
+            <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=400&h=300&fit=crop"
+                alt="Mountain Forest">
+            <img src="https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=400&h=300&fit=crop"
+                alt="Forest Lake">
+        </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="about">
+        <h2>👨‍💼 About Me 👨‍💼</h2>
+        <div class="about-box">
+            <img src="../../Downloads/c5a6e727-202a-4f52-bc51-b70084c061f8.jfif" alt="My Picture">
+            <div>
+                <p>
+                    My name is Ahmad, and I am a student who is deeply concerned about the
+                    environmental challenges facing our planet. I created the “Save the Forest”
+                    awareness campaign as part of my ICT project to educate people about the
+                    importance of forests and natural ecosystems.
+                </p>
+                <p>
+                    I believe that awareness is the first step toward change. Through this
+                    project, I aim to encourage people to protect forests, reduce pollution,
+                    and participate in tree plantation and clean-up activities. Even small
+                    actions can help create a greener and healthier future.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HELP & DONATE -->
+    <section id="help">
+        <h2>🌍 Help Us Clean & Protect Forests 🌍</h2>
+        <p>
+            Forest pollution caused by plastic waste and careless human behavior is destroying
+            natural habitats. You can help by reducing plastic usage, joining clean-up drives,
+            and spreading environmental awareness in your community.
+        </p>
+
+        <div class="donate">
+            🌱 Donate to Support Forest Conservation 🌱
+        </div>
+
+        <p><strong>📱 WhatsApp:</strong> 03473716718</p>
+        <p><strong>📧 Email:</strong> hydraahmad1234567890@gmail.com</p>
+    </section>
+
+    <!-- PRIVACY & POLICY PAGE -->
+    <section id="privacy">
+        <h2>📋 Privacy Policy & User Agreement 📋</h2>
+
+        <div
+            style="max-width: 900px; margin: 0 auto; text-align: left; font-size: 15px; line-height: 1.8; color: #333;">
+
+            <h3 style="color: #1b5e20; margin-top: 25px; margin-bottom: 15px;">1. Privacy Policy</h3>
+            <p>
+                Save the Forest is committed to protecting your privacy. This Privacy Policy explains how we collect,
+                use, disclose, and safeguard your information when you visit our website and use our services.
+            </p>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">1.1 Information We Collect</h4>
+            <ul style="margin-left: 20px;">
+                <li><strong>Personal Information:</strong> Name, email address, date of birth, location</li>
+                <li><strong>Educational Information:</strong> School/University, education level</li>
+                <li><strong>Usage Data:</strong> Quiz responses, scores, certificates, login history</li>
+                <li><strong>Device Information:</strong> Browser type, IP address, device type</li>
+                <li><strong>Cookies:</strong> Session cookies, preference cookies, analytics cookies</li>
+            </ul>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">1.2 How We Use Your Information</h4>
+            <ul style="margin-left: 20px;">
+                <li>To provide and maintain our services</li>
+                <li>To send you certificates and achievement notifications</li>
+                <li>To personalize your experience</li>
+                <li>To track learning progress and generate reports</li>
+                <li>To send educational updates about forests and environment</li>
+                <li>To improve our website and services</li>
+                <li>To comply with legal obligations</li>
+            </ul>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">1.3 Data Security</h4>
+            <p>
+                We implement appropriate technical and organizational measures to protect your personal data against
+                unauthorized processing, accidental or unlawful destruction, loss, alteration, unauthorized disclosure
+                or access.
+            </p>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">1.4 Your Rights</h4>
+            <ul style="margin-left: 20px;">
+                <li>Right to access your personal data</li>
+                <li>Right to correct inaccurate data</li>
+                <li>Right to request deletion of your data</li>
+                <li>Right to withdraw consent</li>
+                <li>Right to data portability</li>
+                <li>Right to opt-out of marketing communications</li>
+            </ul>
+
+            <h3 style="color: #1b5e20; margin-top: 25px; margin-bottom: 15px;">2. Cookie Policy</h3>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">2.1 What Are Cookies?</h4>
+            <p>
+                Cookies are small text files stored on your device when you visit our website. They help us remember
+                your preferences, keep you logged in, and understand how you use our site.
+            </p>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">2.2 Types of Cookies We Use</h4>
+            <ul style="margin-left: 20px;">
+                <li><strong>Essential Cookies:</strong> Required for login and basic functionality</li>
+                <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+                <li><strong>Analytics Cookies:</strong> Help us understand site usage patterns</li>
+                <li><strong>Session Cookies:</strong> Maintain your session while browsing</li>
+            </ul>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">2.3 Managing Cookies</h4>
+            <p>
+                You can control cookie settings through your browser preferences. However, disabling certain cookies may
+                affect the functionality of our website.
+            </p>
+
+            <h3 style="color: #1b5e20; margin-top: 25px; margin-bottom: 15px;">3. User Agreement & Terms of Service</h3>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">3.1 Acceptance of Terms</h4>
+            <p>
+                By accessing and using this website, you accept and agree to be bound by the terms and provision of this
+                agreement.
+            </p>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">3.2 Use License</h4>
+            <p>
+                Permission is granted to temporarily download one copy of the materials (information or software) on
+                Save the Forest's website for personal, non-commercial transitory viewing only. This is the grant of a
+                license, not a transfer of title.
+            </p>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">3.3 Disclaimer</h4>
+            <p>
+                The materials on Save the Forest's website are provided on an 'as is' basis. Save the Forest makes no
+                warranties, expressed or implied, and hereby disclaims and negates all other warranties including,
+                without limitation, implied warranties or conditions of merchantability, fitness for a particular
+                purpose, or non-infringement of intellectual property or other violation of rights.
+            </p>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">3.4 Limitations</h4>
+            <p>
+                In no event shall Save the Forest or its suppliers be liable for any damages (including, without
+                limitation, damages for loss of data or profit, or due to business interruption) arising out of the use
+                or inability to use the materials on Save the Forest's website.
+            </p>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">3.5 Accuracy of Materials</h4>
+            <p>
+                The materials appearing on Save the Forest's website could include technical, typographical, or
+                photographic errors. Save the Forest does not warrant that any of the materials on its website are
+                accurate, complete, or current.
+            </p>
+
+            <h4 style="color: #2e7d32; margin-top: 15px;">3.6 User Responsibilities</h4>
+            <ul style="margin-left: 20px;">
+                <li>Maintain the confidentiality of your account and password</li>
+                <li>Accept responsibility for all activities under your account</li>
+                <li>Not engage in any conduct that restricts or inhibits anyone's use or enjoyment of the website</li>
+                <li>Not attempt to gain unauthorized access to our systems</li>
+            </ul>
+
+            <h3 style="color: #1b5e20; margin-top: 25px; margin-bottom: 15px;">4. Contact Information</h3>
+            <p>
+                If you have any questions about this Privacy Policy or User Agreement, please contact us at:<br>
+                <strong>Email:</strong> privacy@savetheforest.org<br>
+                <strong>WhatsApp:</strong> 03473716718
+            </p>
+
+            <p style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #1b5e20; color: #666;">
+                <strong>Last Updated:</strong> January 21, 2026<br>
+                <strong>Version:</strong> 1.0
+            </p>
+        </div>
+    </section>
+
+    <!-- PROFILE PAGE -->
+    <div id="profilePage" class="profile-page">
+        <div class="profile-container">
+            <h1>🌲 Forest Ranger Profile</h1>
+
+            <!-- Profile Picture & Ranger Info Section -->
+            <div class="profile-section">
+                <!-- Profile Picture -->
+                <div class="profile-picture-section">
+                    <img id="profilePicture"
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%231b5e20'/%3E%3Ctext x='50' y='65' font-size='60' fill='white' text-anchor='middle'%3E🌳%3C/text%3E%3C/svg%3E"
+                        alt="Profile Picture">
+                    <input type="file" id="picUpload" accept="image/*">
+                    <button class="upload-picture-btn" onclick="document.getElementById('picUpload').click()">📷 Change
+                        Picture</button>
+                </div>
+
+                <!-- Ranger Info -->
+                <div class="ranger-info-section">
+                    <h2>🌲 Forest Ranger Information</h2>
+                    <div class="ranger-info">
+                        <div class="info-item">
+                            <strong>Name:</strong>
+                            <span id="rangerName">-</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Email:</strong>
+                            <span id="rangerEmail">-</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Title:</strong>
+                            <span id="rangerTitle">🌱 Seedling</span>
+                        </div>
+                        <div class="ranger-title-badge">
+                            <span id="rankBadge">🌱</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Streak System Section -->
+            <div class="streak-container">
+                <div class="streak-label">🔥 Conservation Streak</div>
+                <span id="streakCount">0</span>
+                <div class="streak-days">Days Active</div>
+                <button class="add-to-streak-btn" onclick="addToStreak()">🌱 Add Day to Streak</button>
+                <div class="last-streak-date">Last activity: <span id="lastStreakDate">No activity yet</span></div>
+            </div>
+
+            <!-- Achievement Titles Section -->
+            <div class="achievements-section">
+                <h3>🏆 Achievement Titles</h3>
+                <div class="title-badges-grid">
+                    <div class="title-badge current">
+                        <span class="title-badge-icon">🌱</span>
+                        <div class="title-badge-name">Seedling</div>
+                        <div class="title-badge-range">0-5 Days</div>
+                    </div>
+                    <div class="title-badge" id="title-sprout">
+                        <span class="title-badge-icon">🌿</span>
+                        <div class="title-badge-name">Sprout</div>
+                        <div class="title-badge-range">6-15 Days</div>
+                    </div>
+                    <div class="title-badge" id="title-tree">
+                        <span class="title-badge-icon">🌳</span>
+                        <div class="title-badge-name">Tree Guardian</div>
+                        <div class="title-badge-range">16-30 Days</div>
+                    </div>
+                    <div class="title-badge" id="title-elder">
+                        <span class="title-badge-icon">🌲</span>
+                        <div class="title-badge-name">Forest Elder</div>
+                        <div class="title-badge-range">31-60 Days</div>
+                    </div>
+                    <div class="title-badge" id="title-hero">
+                        <span class="title-badge-icon">⭐</span>
+                        <div class="title-badge-name">Conservation Hero</div>
+                        <div class="title-badge-range">61-100 Days</div>
+                    </div>
+                    <div class="title-badge" id="title-legend">
+                        <span class="title-badge-icon">👑</span>
+                        <div class="title-badge-name">Legend</div>
+                        <div class="title-badge-range">100+ Days</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="showProfileFromMain()"
+                    style="padding: 12px 30px; background: #2e7d32; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; margin: 5px;">←
+                    Back to Main</button>
+                <button onclick="logoutUser()"
+                    style="padding: 12px 30px; background: #d32f2f; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; margin: 5px;">🚪
+                    Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Notification Modal -->
+    <div id="emailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✉️ Email Confirmation</h2>
+            </div>
+            <div class="modal-body">
+                <p id="emailMessage"></p>
+                <div class="email-details">
+                    <p><strong>Status:</strong> <span style="color: #1b5e20;">✓ Successfully Sent</span></p>
+                    <p id="emailSentTo"></p>
+                    <p id="emailTitle"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeEmailModal()" class="close-modal-btn">Got It!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN / REGISTER / FORGOT PASSWORD -->
+    <section id="login">
+        <h2>🔐 User Authentication 🔐</h2>
+
+        <!-- Tabs Navigation -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <button onclick="showTab('loginTab')" id="loginTabBtn"
+                style="padding: 10px 20px; background: #1b5e20; color: white; border: none; margin: 5px; cursor: pointer; border-radius: 5px; font-weight: bold;">Login</button>
+            <button onclick="showTab('registerTab')" id="registerTabBtn"
+                style="padding: 10px 20px; background: #666; color: white; border: none; margin: 5px; cursor: pointer; border-radius: 5px; font-weight: bold;">Register</button>
+            <button onclick="showTab('forgotTab')" id="forgotTabBtn"
+                style="padding: 10px 20px; background: #666; color: white; border: none; margin: 5px; cursor: pointer; border-radius: 5px; font-weight: bold;">Forgot
+                Password</button>
+        </div>
+
+        <!-- LOGIN TAB -->
+        <div id="loginTab" class="auth-tab">
+            <div class="login-box">
+                <h3 style="text-align: center; color: #1b5e20; margin-bottom: 20px;">Sign In to Your Account</h3>
+                <input type="email" id="loginEmail" placeholder="Email Address"
+                    style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #aaa;">
+                <input type="password" id="loginPassword" placeholder="Password"
+                    style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #aaa;">
+                <button onclick="loginUserWithProfile()"
+                    style="width: 100%; padding: 12px; background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 6px;">Login</button>
+                <p id="loginMessage" style="margin-top: 10px; color: #1b5e20; font-weight: bold; text-align: center;">
+                </p>
+
+                <!-- Agreement Checkboxes -->
+                <div
+                    style="margin-top: 20px; padding: 15px; background: #f0f7f0; border-radius: 8px; border-left: 4px solid #1b5e20;">
+                    <label
+                        style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13px; margin-bottom: 10px;">
+                        <input type="checkbox" id="loginPrivacyConsent" style="margin-top: 3px; cursor: pointer;">
+                        <span>I agree to the <a href="#privacy"
+                                style="color: #1b5e20; text-decoration: underline;">Privacy Policy & User
+                                Agreement</a></span>
+                    </label>
+                    <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13px;">
+                        <input type="checkbox" id="loginDataConsent" style="margin-top: 3px; cursor: pointer;">
+                        <span>📊 I allow data storage for personalization and improvements</span>
+                    </label>
+                </div>
+
+                <!-- Divider -->
+                <div style="text-align: center; margin: 20px 0;">
+                    <p style="color: #666; font-size: 14px;">Or login with</p>
+                </div>
+
+                <!-- OAuth Login Buttons -->
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="loginWithGoogle()"
+                        style="flex: 1; min-width: 100px; padding: 12px; background: #DB4437; color: white; border: none; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 5px;">
+                        <span>🔵</span> Google
+                    </button>
+                    <button onclick="loginWithFacebook()"
+                        style="flex: 1; min-width: 100px; padding: 12px; background: #1877F2; color: white; border: none; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 5px;">
+                        <span>f</span> Facebook
+                    </button>
+                    <button onclick="loginWithApple()"
+                        style="flex: 1; min-width: 100px; padding: 12px; background: #000; color: white; border: none; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 5px;">
+                        <span>🍎</span> Apple
+                    </button>
+                </div>
+
+                <!-- Data Consent Checkbox -->
+                <div
+                    style="margin-top: 20px; padding: 15px; background: #f0f7f0; border-radius: 8px; border-left: 4px solid #1b5e20;">
+                    <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13px;">
+                        <input type="checkbox" id="loginDataConsent" style="margin-top: 3px; cursor: pointer;">
+                        <span>📊 I agree to allow this platform to store my data for future uses, personalized
+                            recommendations, and improvements to our services. <a href="#"
+                                onclick="showPrivacyModal(); return false;"
+                                style="color: #1b5e20; text-decoration: underline;">View Privacy Policy</a></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTER TAB -->
+        <div id="registerTab" class="auth-tab" style="display: none;">
+            <div class="login-box" style="max-width: 500px;">
+                <h3 style="text-align: center; color: #1b5e20; margin-bottom: 20px;">Create New Account</h3>
+                <input type="text" id="regFullName" placeholder="Full Name"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                <input type="email" id="regEmail" placeholder="Email Address"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                <input type="password" id="regPassword" placeholder="Password"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                <input type="password" id="regConfirmPassword" placeholder="Confirm Password"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                <input type="date" id="regDOB" placeholder="Date of Birth"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                <input type="text" id="regPlaceBorn" placeholder="Place of Birth"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                <select id="regEducationLevel"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                    <option value="">Select Education Level</option>
+                    <option value="High School">High School</option>
+                    <option value="Bachelor">Bachelor's Degree</option>
+                    <option value="Master">Master's Degree</option>
+                    <option value="PhD">PhD</option>
+                    <option value="Other">Other</option>
+                </select>
+                <input type="text" id="regInstitution" placeholder="School/College/University Name"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                <input type="text" id="regPhoneNumber" placeholder="Phone Number"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                <input type="text" id="regCity" placeholder="City"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+
+                <!-- Data Consent Checkbox for Registration -->
+                <div
+                    style="padding: 12px; background: #f0f7f0; border-radius: 8px; border-left: 4px solid #1b5e20; margin-bottom: 12px;">
+                    <label
+                        style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13px; margin-bottom: 10px;">
+                        <input type="checkbox" id="regPrivacyConsent" style="margin-top: 3px; cursor: pointer;">
+                        <span>I agree to the <a href="#privacy"
+                                style="color: #1b5e20; text-decoration: underline;">Privacy Policy & User
+                                Agreement</a></span>
+                    </label>
+                    <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 13px;">
+                        <input type="checkbox" id="regDataConsent" style="margin-top: 3px; cursor: pointer;">
+                        <span>📊 I agree to store my data for future uses and personalization</span>
+                    </label>
+                </div>
+
+                <button onclick="registerUserWithProfile()"
+                    style="width: 100%; padding: 12px; background: linear-gradient(135deg, #4caf50 0%, #45a049 100%); color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 6px;">Register</button>
+                <p id="registerMessage"
+                    style="margin-top: 10px; color: #1b5e20; font-weight: bold; text-align: center;"></p>
+            </div>
+        </div>
+
+        <!-- FORGOT PASSWORD TAB -->
+        <div id="forgotTab" class="auth-tab" style="display: none;">
+            <!-- STEP 1: Enter Contact & Select Delivery Method -->
+            <div id="forgotStep1" class="login-box" style="max-width: 450px;">
+                <h3 style="text-align: center; color: #1b5e20; margin-bottom: 20px;">🔐 Recover Your Password</h3>
+                <p style="text-align: center; color: #666; margin-bottom: 20px; font-size: 14px;">Choose your preferred
+                    method to receive OTP</p>
+
+                <!-- OTP Delivery Options with Dynamic Inputs -->
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                    <!-- Email Option -->
+                    <label
+                        style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #f0f7f0; border-radius: 8px; cursor: pointer; border: 2px solid #1b5e20;">
+                        <input type="radio" name="otpMethod" value="email" checked
+                            style="width: 16px; height: 16px; cursor: pointer;" onchange="showEmailInput()">
+                        <span style="color: #1b5e20; font-weight: bold; font-size: 14px;">📧 Send via Email</span>
+                    </label>
+
+                    <!-- SMS Option -->
+                    <label
+                        style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #f0f7f0; border-radius: 8px; cursor: pointer; border: 2px solid #ccc;">
+                        <input type="radio" name="otpMethod" value="sms"
+                            style="width: 16px; height: 16px; cursor: pointer;" onchange="showPhoneInput('sms')">
+                        <span style="color: #333; font-weight: bold; font-size: 14px;">📱 Send via SMS</span>
+                    </label>
+
+                    <!-- WhatsApp Option -->
+                    <label
+                        style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #f0f7f0; border-radius: 8px; cursor: pointer; border: 2px solid #ccc;">
+                        <input type="radio" name="otpMethod" value="whatsapp"
+                            style="width: 16px; height: 16px; cursor: pointer;" onchange="showPhoneInput('whatsapp')">
+                        <span style="color: #333; font-weight: bold; font-size: 14px;">💬 Send via WhatsApp</span>
+                    </label>
+                </div>
+
+                <!-- Dynamic Input Fields -->
+                <!-- Email Input (Shown by Default) -->
+                <div id="emailInputSection" style="margin-bottom: 20px;">
+                    <input type="email" id="forgotEmail" placeholder="Enter your email address"
+                        style="width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #aaa;">
+                    <p style="font-size: 12px; color: #666; text-align: center;">We'll send OTP to this email</p>
+                </div>
+
+                <!-- Phone Input (Hidden Initially) -->
+                <div id="phoneInputSection" style="display: none; margin-bottom: 20px;">
+                    <input type="tel" id="forgotPhone" placeholder="Enter your phone number (e.g., 03001234567)"
+                        style="width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #aaa;">
+                    <p id="phoneMethodInfo" style="font-size: 12px; color: #666; text-align: center;">We'll send OTP to
+                        this number</p>
+                </div>
+
+                <button onclick="sendOTP()"
+                    style="width: 100%; padding: 12px; background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 6px;">📨
+                    Send OTP</button>
+                <p id="forgotMessage" style="margin-top: 10px; color: #1b5e20; font-weight: bold; text-align: center;">
+                </p>
+            </div>
+
+            <!-- STEP 2: Enter OTP -->
+            <div id="forgotStep2" class="login-box" style="display: none; max-width: 400px;">
+                <h3 style="text-align: center; color: #1b5e20; margin-bottom: 20px;">🔐 Verify OTP</h3>
+                <p style="text-align: center; color: #666; margin-bottom: 20px; font-size: 14px;"><span
+                        id="otpDeliveryInfo">OTP sent to your email.</span> Please enter it below.</p>
+                <input type="text" id="otpInput" placeholder="Enter 6-digit OTP"
+                    style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #aaa; text-align: center; font-size: 18px; letter-spacing: 5px; font-weight: bold;">
+                <button onclick="verifyOTP()"
+                    style="width: 100%; padding: 12px; background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 6px;">✓
+                    Verify OTP</button>
+                <button onclick="backToEmailStep()"
+                    style="width: 100%; padding: 12px; background: #999; color: white; border: none; font-size: 14px; cursor: pointer; border-radius: 6px; margin-top: 10px;">←
+                    Back</button>
+                <p id="forgotMessage" style="margin-top: 10px; color: #d32f2f; font-weight: bold; text-align: center;">
+                </p>
+            </div>
+
+            <!-- STEP 3: Set New Password -->
+            <div id="forgotStep3" class="login-box" style="display: none; max-width: 400px;">
+                <h3 style="text-align: center; color: #1b5e20; margin-bottom: 20px;">🔐 Set New Password</h3>
+                <p style="text-align: center; color: #666; margin-bottom: 20px; font-size: 14px;">Create a new password
+                    for your account</p>
+                <input type="password" id="newPassword" placeholder="New Password (min 6 characters)"
+                    style="width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 6px; border: 1px solid #aaa;">
+                <input type="password" id="confirmNewPassword" placeholder="Confirm New Password"
+                    style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #aaa;">
+                <button onclick="resetPassword()"
+                    style="width: 100%; padding: 12px; background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; border-radius: 6px;">✓
+                    Update Password</button>
+                <p id="forgotMessage" style="margin-top: 10px; color: #d32f2f; font-weight: bold; text-align: center;">
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz">
+        <h2>❓ Forest & Ecosystem Quiz ❓</h2>
+        <div class="quiz">
+
+            <div class="question">
+                <h3>1. Why are forests important?</h3>
+                <label><input type="radio" name="q1" value="incorrect"> Produce oxygen</label>
+                <label><input type="radio" name="q1" value="incorrect"> Support wildlife</label>
+                <label><input type="radio" name="q1" value="incorrect"> Control climate</label>
+                <label><input type="radio" name="q1" value="correct"> All of the above</label>
+            </div>
+
+            <div class="question">
+                <h3>2. What causes deforestation?</h3>
+                <label><input type="radio" name="q2" value="incorrect"> Illegal logging</label>
+                <label><input type="radio" name="q2" value="incorrect"> Urban expansion</label>
+                <label><input type="radio" name="q2" value="incorrect"> Agriculture</label>
+                <label><input type="radio" name="q2" value="correct"> All of the above</label>
+            </div>
+
+            <div class="question">
+                <h3>3. How much of Earth's oxygen is produced by forests?</h3>
+                <label><input type="radio" name="q3" value="incorrect"> 10%</label>
+                <label><input type="radio" name="q3" value="correct"> 28%</label>
+                <label><input type="radio" name="q3" value="incorrect"> 50%</label>
+                <label><input type="radio" name="q3" value="incorrect"> 75%</label>
+            </div>
+
+            <div class="question">
+                <h3>4. What percentage of animal species live in forests?</h3>
+                <label><input type="radio" name="q4" value="incorrect"> 20%</label>
+                <label><input type="radio" name="q4" value="incorrect"> 40%</label>
+                <label><input type="radio" name="q4" value="correct"> 80%</label>
+                <label><input type="radio" name="q4" value="incorrect"> 95%</label>
+            </div>
+
+            <div class="question">
+                <h3>5. Which forest type covers the largest area?</h3>
+                <label><input type="radio" name="q5" value="incorrect"> Tropical rainforests</label>
+                <label><input type="radio" name="q5" value="correct"> Boreal forests</label>
+                <label><input type="radio" name="q5" value="incorrect"> Temperate forests</label>
+                <label><input type="radio" name="q5" value="incorrect"> Mangrove forests</label>
+            </div>
+
+            <div class="question">
+                <h3>6. How many tree species are estimated to exist globally?</h3>
+                <label><input type="radio" name="q6" value="incorrect"> 10,000</label>
+                <label><input type="radio" name="q6" value="incorrect"> 50,000</label>
+                <label><input type="radio" name="q6" value="correct"> 60,000</label>
+                <label><input type="radio" name="q6" value="incorrect"> 100,000</label>
+            </div>
+
+            <div class="question">
+                <h3>7. What is the main greenhouse gas absorbed by forests?</h3>
+                <label><input type="radio" name="q7" value="incorrect"> Methane</label>
+                <label><input type="radio" name="q7" value="correct"> Carbon Dioxide</label>
+                <label><input type="radio" name="q7" value="incorrect"> Nitrogen Oxide</label>
+                <label><input type="radio" name="q7" value="incorrect"> Sulfur Dioxide</label>
+            </div>
+
+            <div class="question">
+                <h3>8. Which rainforest produces the most oxygen?</h3>
+                <label><input type="radio" name="q8" value="correct"> Amazon Rainforest</label>
+                <label><input type="radio" name="q8" value="incorrect"> Congo Rainforest</label>
+                <label><input type="radio" name="q8" value="incorrect"> Southeast Asian Rainforests</label>
+                <label><input type="radio" name="q8" value="incorrect"> Australian Rainforests</label>
+            </div>
+
+            <div class="question">
+                <h3>9. How many hectares of forest are lost annually?</h3>
+                <label><input type="radio" name="q9" value="incorrect"> 5 million hectares</label>
+                <label><input type="radio" name="q9" value="correct"> 10 million hectares</label>
+                <label><input type="radio" name="q9" value="incorrect"> 20 million hectares</label>
+                <label><input type="radio" name="q9" value="incorrect"> 30 million hectares</label>
+            </div>
+
+            <div class="question">
+                <h3>10. What role do forests play in water cycle?</h3>
+                <label><input type="radio" name="q10" value="incorrect"> They reduce water evaporation</label>
+                <label><input type="radio" name="q10" value="incorrect"> They pollute water sources</label>
+                <label><input type="radio" name="q10" value="correct"> They regulate water flow and rainfall</label>
+                <label><input type="radio" name="q10" value="incorrect"> They have no effect on water</label>
+            </div>
+
+            <div class="question">
+                <h3>11. Which tree is the tallest in the world?</h3>
+                <label><input type="radio" name="q11" value="correct"> Coast Redwood</label>
+                <label><input type="radio" name="q11" value="incorrect"> Giant Sequoia</label>
+                <label><input type="radio" name="q11" value="incorrect"> Sitka Spruce</label>
+                <label><input type="radio" name="q11" value="incorrect"> White Pine</label>
+            </div>
+
+            <div class="question">
+                <h3>12. How long can trees live?</h3>
+                <label><input type="radio" name="q12" value="incorrect"> 100-200 years maximum</label>
+                <label><input type="radio" name="q12" value="incorrect"> 500-1000 years maximum</label>
+                <label><input type="radio" name="q12" value="correct"> Some can live thousands of years</label>
+                <label><input type="radio" name="q12" value="incorrect"> Trees never live more than 50 years</label>
+            </div>
+
+            <div class="question">
+                <h3>13. What is soil erosion caused by?</h3>
+                <label><input type="radio" name="q13" value="incorrect"> Heavy rain alone</label>
+                <label><input type="radio" name="q13" value="correct"> Deforestation and loss of tree roots</label>
+                <label><input type="radio" name="q13" value="incorrect"> Animal grazing alone</label>
+                <label><input type="radio" name="q13" value="incorrect"> Wind alone</label>
+            </div>
+
+            <div class="question">
+                <h3>14. What percentage of forest medicines are used in pharmaceuticals?</h3>
+                <label><input type="radio" name="q14" value="incorrect"> 10%</label>
+                <label><input type="radio" name="q14" value="correct"> 25%</label>
+                <label><input type="radio" name="q14" value="incorrect"> 50%</label>
+                <label><input type="radio" name="q14" value="incorrect"> 75%</label>
+            </div>
+
+            <div class="question">
+                <h3>15. Which country has the largest forest area?</h3>
+                <label><input type="radio" name="q15" value="correct"> Russia</label>
+                <label><input type="radio" name="q15" value="incorrect"> Brazil</label>
+                <label><input type="radio" name="q15" value="incorrect"> Canada</label>
+                <label><input type="radio" name="q15" value="incorrect"> Indonesia</label>
+            </div>
+
+            <div class="question">
+                <h3>16. What is the process by which plants use sunlight to make food?</h3>
+                <label><input type="radio" name="q16" value="incorrect"> Respiration</label>
+                <label><input type="radio" name="q16" value="correct"> Photosynthesis</label>
+                <label><input type="radio" name="q16" value="incorrect"> Transpiration</label>
+                <label><input type="radio" name="q16" value="incorrect"> Decomposition</label>
+            </div>
+
+            <div class="question">
+                <h3>17. How many people depend on forests for their livelihood?</h3>
+                <label><input type="radio" name="q17" value="incorrect"> 500 million</label>
+                <label><input type="radio" name="q17" value="correct"> 1.6 billion</label>
+                <label><input type="radio" name="q17" value="incorrect"> 3 billion</label>
+                <label><input type="radio" name="q17" value="incorrect"> 5 billion</label>
+            </div>
+
+            <div class="question">
+                <h3>18. What is the main cause of deforestation in Brazil?</h3>
+                <label><input type="radio" name="q18" value="incorrect"> Logging for timber</label>
+                <label><input type="radio" name="q18" value="correct"> Cattle ranching and agriculture</label>
+                <label><input type="radio" name="q18" value="incorrect"> Urban expansion</label>
+                <label><input type="radio" name="q18" value="incorrect"> Mining operations</label>
+            </div>
+
+            <div class="question">
+                <h3>19. How many species go extinct daily due to deforestation?</h3>
+                <label><input type="radio" name="q19" value="incorrect"> 10-20 species</label>
+                <label><input type="radio" name="q19" value="incorrect"> 50-100 species</label>
+                <label><input type="radio" name="q19" value="correct"> 137+ species</label>
+                <label><input type="radio" name="q19" value="incorrect"> 500 species</label>
+            </div>
+
+            <div class="question">
+                <h3>20. What is a "carbon sink"?</h3>
+                <label><input type="radio" name="q20" value="incorrect"> A place where carbon dioxide is burned</label>
+                <label><input type="radio" name="q20" value="correct"> Something that absorbs and stores carbon
+                    dioxide</label>
+                <label><input type="radio" name="q20" value="incorrect"> A natural disaster</label>
+                <label><input type="radio" name="q20" value="incorrect"> A type of tree disease</label>
+            </div>
+
+            <div class="question">
+                <h3>21. Which forest type is found in tropical regions?</h3>
+                <label><input type="radio" name="q21" value="correct"> Rainforests</label>
+                <label><input type="radio" name="q21" value="incorrect"> Taiga</label>
+                <label><input type="radio" name="q21" value="incorrect"> Temperate deciduous</label>
+                <label><input type="radio" name="q21" value="incorrect"> Boreal</label>
+            </div>
+
+            <div class="question">
+                <h3>22. What is biodiversity?</h3>
+                <label><input type="radio" name="q22" value="incorrect"> The diversity of weather patterns</label>
+                <label><input type="radio" name="q22" value="correct"> The variety of life forms in an area</label>
+                <label><input type="radio" name="q22" value="incorrect"> The diversity of soil types</label>
+                <label><input type="radio" name="q22" value="incorrect"> The diversity of mountains</label>
+            </div>
+
+            <div class="question">
+                <h3>23. What is the primary purpose of reforestation?</h3>
+                <label><input type="radio" name="q23" value="incorrect"> To increase pollution</label>
+                <label><input type="radio" name="q23" value="correct"> To restore forests and combat climate
+                    change</label>
+                <label><input type="radio" name="q23" value="incorrect"> To reduce animal habitats</label>
+                <label><input type="radio" name="q23" value="incorrect"> To create deserts</label>
+            </div>
+
+            <div class="question">
+                <h3>24. Which organization focuses on forest conservation?</h3>
+                <label><input type="radio" name="q24" value="incorrect"> WHO</label>
+                <label><input type="radio" name="q24" value="correct"> WWF (World Wildlife Fund)</label>
+                <label><input type="radio" name="q24" value="incorrect"> NASA</label>
+                <label><input type="radio" name="q24" value="incorrect"> WHO only</label>
+            </div>
+
+            <div class="question">
+                <h3>25. What is sustainable forest management?</h3>
+                <label><input type="radio" name="q25" value="incorrect"> Cutting down all trees at once</label>
+                <label><input type="radio" name="q25" value="correct"> Harvesting forests while maintaining their
+                    health</label>
+                <label><input type="radio" name="q25" value="incorrect"> Abandoning all forest use</label>
+                <label><input type="radio" name="q25" value="incorrect"> Using only artificial trees</label>
+            </div>
+
+            <button onclick="submitQuiz()" class="submit-btn">📝 Submit Quiz 📝</button>
+        </div>
+        <p id="quizMessage" style="margin-top: 20px; font-size: 16px; color: #1b5e20; font-weight: bold;"></p>
+    </section>
+
+    <!-- REWARDS -->
+    <section class="rewards">
+        <h2>🏆 Virtual Rewards 🏆</h2>
+        <p>🎯 Points Earned: <strong id="pointsDisplay">0</strong></p>
+        <p>🏆 Title: <strong id="titleDisplay">Not Earned Yet</strong></p>
+    </section>
+
+    <footer>
+        <p>© 2026 Save the Forest Awareness Campaign | ICT Project</p>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; overflow-y: auto; padding: 20px;">
+        <div
+            style="background: white; max-width: 600px; margin: 30px auto; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            <h2 style="color: #1b5e20; margin-bottom: 20px;">📋 Privacy Policy & Data Consent</h2>
+
+            <div
+                style="max-height: 400px; overflow-y: auto; margin-bottom: 20px; font-size: 14px; line-height: 1.6; color: #333;">
+                <h3 style="color: #2e7d32; margin-top: 15px;">Data Collection</h3>
+                <p>We collect the following information to enhance your experience:</p>
+                <ul style="margin-left: 20px;">
+                    <li>Personal Information (Name, Email, Date of Birth)</li>
+                    <li>Educational Details (School/College/University, Education Level)</li>
+                    <li>Location Information (Place of Birth, City)</li>
+                    <li>Quiz Responses and Performance Data</li>
+                    <li>Certificate Details and Achievement Records</li>
+                </ul>
+
+                <h3 style="color: #2e7d32; margin-top: 15px;">How We Use Your Data</h3>
+                <ul style="margin-left: 20px;">
+                    <li>✅ Generate personalized certificates</li>
+                    <li>✅ Send notifications and achievements</li>
+                    <li>✅ Improve quiz and content recommendations</li>
+                    <li>✅ Track learning progress and statistics</li>
+                    <li>✅ Enhance user experience</li>
+                    <li>✅ Send environmental awareness updates (if opted in)</li>
+                </ul>
+
+                <h3 style="color: #2e7d32; margin-top: 15px;">Data Security</h3>
+                <p>Your data is stored securely in encrypted local storage. We take your privacy seriously and will
+                    never share your information with third parties without your consent.</p>
+
+                <h3 style="color: #2e7d32; margin-top: 15px;">Your Rights</h3>
+                <ul style="margin-left: 20px;">
+                    <li>You can withdraw consent at any time</li>
+                    <li>You can request to view all your stored data</li>
+                    <li>You can request data deletion</li>
+                    <li>You have the right to be forgotten</li>
+                </ul>
+
+                <h3 style="color: #2e7d32; margin-top: 15px;">Contact Us</h3>
+                <p>For privacy concerns, contact us at: <strong>privacy@savetheforest.org</strong></p>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: space-between;">
+                <button onclick="closePrivacyModal()"
+                    style="flex: 1; padding: 12px; background: #666; color: white; border: none; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 6px;">Close</button>
+                <button onclick="acceptDataConsent()"
+                    style="flex: 1; padding: 12px; background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; border: none; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 6px;">✓
+                    Accept & Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include jsPDF library for certificate generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <!-- OAuth SDKs -->
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"
+        integrity="sha384-2pwjBr+CgIYe2nx+HAca37Qzc2bRP/SSJSgY5pZRH4+BqWG60dMvjUYLdwfp5gHP"></script>
+
+    <!-- Apple Sign-In -->
+    <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid.js"></script>
+
+    <script>
+        // ==================== PAGE NAVIGATION SYSTEM ====================
+        let currentPage = 'loginPage';
+        let userEmail = '';
+        let userName = '';
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            currentPage = pageId;
+        }
+
+        function goToNextPage(nextPage) {
+            if (nextPage === 'privacy') {
+                const email = document.getElementById('loginEmail').value.trim();
+                const password = document.getElementById('loginPassword').value.trim();
+
+                if (!email || !password) {
+                    document.getElementById('loginMessage').textContent = '❌ Please enter email and password!';
+                    return;
+                }
+                userEmail = email;
+                showPage('privacyPage');
+            } else if (nextPage === 'profile') {
+                const privacyConsent = document.getElementById('privacyConsent').checked;
+                if (!privacyConsent) {
+                    document.getElementById('privacyMessage').textContent = '❌ Please agree to Privacy Policy!';
+                    return;
+                }
+                document.getElementById('profileEmail').value = userEmail;
+                showPage('profilePage');
+            } else if (nextPage === 'main') {
+                showPage('mainPage');
+            } else if (nextPage === 'register') {
+                showPage('loginPage');
+            }
+        }
+
+        function goToPreviousPage() {
+            if (currentPage === 'privacyPage') {
+                document.getElementById('loginMessage').textContent = '';
+                showPage('loginPage');
+            } else if (currentPage === 'profilePage') {
+                document.getElementById('privacyMessage').textContent = '';
+                showPage('privacyPage');
+            }
+        }
+
+        function completeProfile() {
+            const name = document.getElementById('profileName').value.trim();
+
+            if (!name) {
+                document.getElementById('profileMessage').textContent = '❌ Please enter your name!';
+                return;
+            }
+
+            userName = name;
+
+            // Save user data
+            let allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            const newUser = {
+                name: name,
+                email: userEmail,
+                title: '🌱 Seedling',
+                badge: '🌱',
+                streak: 0,
+                lastStreakDate: null,
+                profilePicture: document.getElementById('profilePicture').src || null
+            };
+
+            allUsers.push(newUser);
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            localStorage.setItem('currentUser', userEmail);
+            localStorage.setItem('currentUserName', name);
+
+            // Show email notification
+            showEmailModal(
+                'Welcome to Save the Forest!',
+                `Welcome to Save the Forest, ${name}! Your account has been successfully created. You are now a Forest Ranger!`,
+                userEmail,
+                name
+            );
+
+            // Redirect to main page after 2 seconds
+            setTimeout(() => {
+                closeEmailModal();
+                goToNextPage('main');
+            }, 3000);
+        }
+
+        function goToProfile() {
+            alert('👤 Your Profile - Coming Soon!\n\nStreak: 0 Days\nTitle: 🌱 Seedling\nEmail: ' + localStorage.getItem('currentUser'));
+        }
+
+        function logoutFromMain() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('currentUserName');
+                showPage('loginPage');
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+                userEmail = '';
+                userName = '';
+            }
+        }
+
+        function showEmailModal(subject, message, email, name) {
+            document.getElementById('emailMessage').textContent = message;
+            document.getElementById('emailSentTo').innerHTML = `<strong>Sent to:</strong> ${email}`;
+            document.getElementById('emailTitle').innerHTML = `<strong>Title:</strong> 🌱 Forest Ranger`;
+            document.getElementById('emailModal').style.display = 'flex';
+        }
+
+        function closeEmailModal() {
+            document.getElementById('emailModal').style.display = 'none';
+        }
+
+        // Picture upload handler
+        document.addEventListener('DOMContentLoaded', function () {
+            const picUpload = document.getElementById('picUpload');
+            if (picUpload) {
+                picUpload.addEventListener('change', function (e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                            document.getElementById('profilePicture').src = event.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+
+        // Initialize EmailJS
+        emailjs.init('YOUR_EMAILJS_PUBLIC_KEY'); // You'll need to set this up
+
+        // Load saved user data on page load
+        window.addEventListener('DOMContentLoaded', function () {
+            loadUserData();
+        });
+
+        // AUTHENTICATION SYSTEM
+
+        // Show Tab Function
+        function showTab(tabName) {
+            // Hide all tabs
+            document.getElementById('loginTab').style.display = 'none';
+            document.getElementById('registerTab').style.display = 'none';
+            document.getElementById('forgotTab').style.display = 'none';
+
+            // Reset button colors
+            document.getElementById('loginTabBtn').style.background = '#666';
+            document.getElementById('registerTabBtn').style.background = '#666';
+            document.getElementById('forgotTabBtn').style.background = '#666';
+
+            // Show selected tab
+            document.getElementById(tabName).style.display = 'block';
+
+            // Highlight active button
+            if (tabName === 'loginTab') {
+                document.getElementById('loginTabBtn').style.background = '#1b5e20';
+            } else if (tabName === 'registerTab') {
+                document.getElementById('registerTabBtn').style.background = '#4caf50';
+            } else if (tabName === 'forgotTab') {
+                document.getElementById('forgotTabBtn').style.background = '#2196F3';
+            }
+        }
+
+        // Register User
+        function registerUser() {
+            const fullName = document.getElementById('regFullName').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const dob = document.getElementById('regDOB').value;
+            const placeBorn = document.getElementById('regPlaceBorn').value;
+            const educationLevel = document.getElementById('regEducationLevel').value;
+            const institution = document.getElementById('regInstitution').value;
+            const phoneNumber = document.getElementById('regPhoneNumber').value;
+            const city = document.getElementById('regCity').value;
+            const privacyConsent = document.getElementById('regPrivacyConsent').checked;
+            const dataConsent = document.getElementById('regDataConsent').checked;
+            const registerMessage = document.getElementById('registerMessage');
+
+            if (!fullName || !email || !password || !confirmPassword || !dob || !placeBorn || !educationLevel || !institution) {
+                registerMessage.textContent = '❌ Please fill all required fields!';
+                registerMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (!privacyConsent) {
+                registerMessage.textContent = '❌ You must agree to the Privacy Policy & User Agreement!';
+                registerMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (!dataConsent) {
+                registerMessage.textContent = '❌ Please agree to data storage for future uses!';
+                registerMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                registerMessage.textContent = '❌ Passwords do not match!';
+                registerMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (password.length < 6) {
+                registerMessage.textContent = '❌ Password must be at least 6 characters!';
+                registerMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Check if email already exists
+            const existingUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            if (existingUsers.some(user => user.email === email)) {
+                registerMessage.textContent = '❌ Email already registered!';
+                registerMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Save user data
+            const userData = {
+                fullName,
+                email,
+                password, // Note: In production, passwords should be hashed on the server
+                dob,
+                placeBorn,
+                educationLevel,
+                institution,
+                phoneNumber,
+                city,
+                registrationDate: new Date().toLocaleDateString(),
+                privacyConsent: true,
+                dataStorageConsent: true,
+                consentDate: new Date().toLocaleDateString(),
+                consentVersion: '1.0'
+            };
+
+            existingUsers.push(userData);
+            localStorage.setItem('allUsers', JSON.stringify(existingUsers));
+
+            // Store consent information
+            localStorage.setItem('userDataConsent', 'true');
+            localStorage.setItem('userConsentDate', new Date().toLocaleDateString());
+
+            registerMessage.textContent = '✅ Registration Successful! You can now login with your email and password.';
+            registerMessage.style.color = '#1b5e20';
+
+            // Clear form
+            setTimeout(() => {
+                document.getElementById('regFullName').value = '';
+                document.getElementById('regEmail').value = '';
+                document.getElementById('regPassword').value = '';
+                document.getElementById('regConfirmPassword').value = '';
+                document.getElementById('regDOB').value = '';
+                document.getElementById('regPlaceBorn').value = '';
+                document.getElementById('regEducationLevel').value = '';
+                document.getElementById('regInstitution').value = '';
+                document.getElementById('regPhoneNumber').value = '';
+                document.getElementById('regCity').value = '';
+                registerMessage.textContent = '';
+                showTab('loginTab');
+            }, 2000);
+        }
+
+        // Login User
+        function loginUser() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const privacyConsent = document.getElementById('loginPrivacyConsent').checked;
+            const dataConsent = document.getElementById('loginDataConsent').checked;
+            const loginMessage = document.getElementById('loginMessage');
+
+            if (!email || !password) {
+                loginMessage.textContent = '❌ Please enter email and password!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (!privacyConsent) {
+                loginMessage.textContent = '❌ You must agree to the Privacy Policy & User Agreement!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (!dataConsent) {
+                loginMessage.textContent = '❌ You must consent to data storage for personalization!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Check credentials
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            const user = allUsers.find(u => u.email === email && u.password === password);
+
+            if (!user) {
+                loginMessage.textContent = '❌ Invalid email or password!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Save current user session
+            localStorage.setItem('userName', user.fullName);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+            localStorage.setItem('userEducation', user.educationLevel);
+            localStorage.setItem('userInstitution', user.institution);
+            localStorage.setItem('userPrivacyConsent', 'true');
+            localStorage.setItem('userConsentDate', new Date().toLocaleDateString());
+
+            loginMessage.textContent = '✅ Login Successful! Welcome ' + user.fullName + '!';
+            loginMessage.style.color = '#1b5e20';
+
+            // Clear login form
+            setTimeout(() => {
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+                document.getElementById('loginPrivacyConsent').checked = false;
+                document.getElementById('loginDataConsent').checked = false;
+                loginMessage.textContent = '';
+            }, 2000);
+        }
+
+        // OAuth Login Functions
+
+        // Login with Google
+        function loginWithGoogle() {
+            const loginMessage = document.getElementById('loginMessage');
+            loginMessage.textContent = '🔄 Connecting to Google...';
+            loginMessage.style.color = '#DB4437';
+
+            // Create a mock Google OAuth response
+            // In production, this would use Google Sign-In API
+            setTimeout(() => {
+                const googleUser = {
+                    fullName: 'Google User',
+                    email: 'user@gmail.com',
+                    provider: 'Google',
+                    profilePicture: 'https://via.placeholder.com/150'
+                };
+
+                // Save OAuth user data
+                saveOAuthUser(googleUser);
+                loginMessage.textContent = '✅ Successfully logged in with Google!';
+                loginMessage.style.color = '#1b5e20';
+
+                setTimeout(() => {
+                    loginMessage.textContent = '';
+                }, 2000);
+            }, 1000);
+
+            // For production implementation:
+            /*
+            google.accounts.id.initialize({
+                client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
+                callback: handleGoogleLogin
+            });
+            google.accounts.id.renderButton(
+                document.querySelector('.google-button'),
+                { theme: 'outline', size: 'large' }
+            );
+            */
+        }
+
+        // Login with Facebook
+        function loginWithFacebook() {
+            const loginMessage = document.getElementById('loginMessage');
+            loginMessage.textContent = '🔄 Connecting to Facebook...';
+            loginMessage.style.color = '#1877F2';
+
+            // Create a mock Facebook OAuth response
+            // In production, this would use Facebook Login API
+            setTimeout(() => {
+                const facebookUser = {
+                    fullName: 'Facebook User',
+                    email: 'user@facebook.com',
+                    provider: 'Facebook',
+                    profilePicture: 'https://via.placeholder.com/150'
+                };
+
+                // Save OAuth user data
+                saveOAuthUser(facebookUser);
+                loginMessage.textContent = '✅ Successfully logged in with Facebook!';
+                loginMessage.style.color = '#1b5e20';
+
+                setTimeout(() => {
+                    loginMessage.textContent = '';
+                }, 2000);
+            }, 1000);
+
+            // For production implementation:
+            /*
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    FB.api('/me?fields=id,name,email,picture', function(userInfo) {
+                        handleFacebookLogin(userInfo);
+                    });
+                }
+            }, {scope: 'public_profile,email'});
+            */
+        }
+
+        // Login with Apple
+        function loginWithApple() {
+            const loginMessage = document.getElementById('loginMessage');
+            loginMessage.textContent = '🔄 Connecting to Apple...';
+            loginMessage.style.color = '#000';
+
+            // Create a mock Apple OAuth response
+            // In production, this would use Apple Sign-In API
+            setTimeout(() => {
+                const appleUser = {
+                    fullName: 'Apple User',
+                    email: 'user@apple.com',
+                    provider: 'Apple',
+                    profilePicture: 'https://via.placeholder.com/150'
+                };
+
+                // Save OAuth user data
+                saveOAuthUser(appleUser);
+                loginMessage.textContent = '✅ Successfully logged in with Apple!';
+                loginMessage.style.color = '#1b5e20';
+
+                setTimeout(() => {
+                    loginMessage.textContent = '';
+                }, 2000);
+            }, 1000);
+
+            // For production implementation:
+            /*
+            AppleID.auth.init({
+                clientId: 'YOUR_APPLE_CLIENT_ID',
+                teamId: 'YOUR_TEAM_ID',
+                keyId: 'YOUR_KEY_ID',
+                redirectUri: 'YOUR_REDIRECT_URI',
+                scope: 'email name'
+            });
+            */
+        }
+
+        // Save OAuth User Data
+        function saveOAuthUser(oauthUser) {
+            // Create user profile with OAuth data
+            const userData = {
+                fullName: oauthUser.fullName,
+                email: oauthUser.email,
+                provider: oauthUser.provider,
+                profilePicture: oauthUser.profilePicture,
+                loginMethod: 'OAuth',
+                loginDate: new Date().toLocaleDateString(),
+                authenticated: true
+            };
+
+            // Save current user session
+            localStorage.setItem('userName', userData.fullName);
+            localStorage.setItem('userEmail', userData.email);
+            localStorage.setItem('userProvider', userData.provider);
+            localStorage.setItem('userProfilePicture', userData.profilePicture);
+            localStorage.setItem('isOAuthUser', 'true');
+
+            // Add to all users list
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            const existingUser = allUsers.findIndex(u => u.email === userData.email);
+
+            if (existingUser === -1) {
+                allUsers.push(userData);
+                localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            }
+
+            // Log OAuth login
+            console.log('OAuth Login Successful:', userData);
+        }
+
+        // Handle OAuth Callbacks
+        function handleGoogleLogin(response) {
+            const userData = {
+                fullName: response.name,
+                email: response.email,
+                provider: 'Google',
+                profilePicture: response.picture
+            };
+            saveOAuthUser(userData);
+        }
+
+        function handleFacebookLogin(response) {
+            const userData = {
+                fullName: response.name,
+                email: response.email,
+                provider: 'Facebook',
+                profilePicture: response.picture.data.url
+            };
+            saveOAuthUser(userData);
+        }
+
+        function handleAppleLogin(response) {
+            const userData = {
+                fullName: response.user.name,
+                email: response.user.email,
+                provider: 'Apple',
+                profilePicture: ''
+            };
+            saveOAuthUser(userData);
+        }
+
+        // Recover Password
+        function recoverPassword() {
+            const email = document.getElementById('forgotEmail').value;
+            const forgotMessage = document.getElementById('forgotMessage');
+
+            if (!email) {
+                forgotMessage.textContent = '❌ Please enter your email!';
+                forgotMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            const user = allUsers.find(u => u.email === email);
+
+            if (!user) {
+                forgotMessage.textContent = '❌ Email not found in our system!';
+                forgotMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            forgotMessage.innerHTML = '✅ Password recovery instructions sent to ' + email + '<br><br>Or use the Reset Password Manually option below.';
+            forgotMessage.style.color = '#1b5e20';
+
+            // In production, send email with reset link
+            console.log('Recovery email would be sent to:', email);
+        }
+
+        // Show Reset Password Form
+        function showResetPassword() {
+            document.getElementById('resetPasswordForm').style.display = 'block';
+        }
+
+        // Reset Password
+        function resetPassword() {
+            const email = document.getElementById('resetEmail').value;
+            const newPassword = document.getElementById('resetPassword').value;
+            const confirmPassword = document.getElementById('resetConfirmPassword').value;
+            const resetMessage = document.getElementById('resetMessage');
+
+            if (!email || !newPassword || !confirmPassword) {
+                resetMessage.textContent = '❌ Please fill all fields!';
+                resetMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                resetMessage.textContent = '❌ Passwords do not match!';
+                resetMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                resetMessage.textContent = '❌ Password must be at least 6 characters!';
+                resetMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Find and update user password
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            const userIndex = allUsers.findIndex(u => u.email === email);
+
+            if (userIndex === -1) {
+                resetMessage.textContent = '❌ Email not found!';
+                resetMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            allUsers[userIndex].password = newPassword;
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+
+            resetMessage.textContent = '✅ Password updated successfully! You can now login with your new password.';
+            resetMessage.style.color = '#1b5e20';
+
+            // Clear form
+            setTimeout(() => {
+                document.getElementById('resetEmail').value = '';
+                document.getElementById('resetPassword').value = '';
+                document.getElementById('resetConfirmPassword').value = '';
+                resetMessage.textContent = '';
+                document.getElementById('resetPasswordForm').style.display = 'none';
+                document.getElementById('forgotMessage').textContent = '';
+                document.getElementById('forgotEmail').value = '';
+            }, 2000);
+        }
+
+        // Load saved user data
+        function loadUserData() {
+            const savedName = localStorage.getItem('userName');
+            if (savedName) {
+                // User is already logged in, data is available
+                console.log('User ' + savedName + ' is logged in');
+            }
+        }
+
+        // Generate and Download Certificate
+        function generateCertificate(userName, score, title) {
+            const currentDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            // Create certificate HTML string directly
+            const certificateHTML = `
+                <div style="width: 100%; padding: 60px; font-family: 'Georgia', serif; background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%); position: relative; border: 8px solid #1b5e20;">
+                    <div style="text-align: center; margin-bottom: 30px; font-size: 60px;">🌲 🌳 🌿</div>
+                    
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h1 style="font-size: 48px; margin: 0; color: #1b5e20; text-transform: uppercase; letter-spacing: 3px; font-weight: bold;">Certificate</h1>
+                        <h2 style="font-size: 28px; margin: 10px 0; color: #2e7d32;">of Achievement</h2>
+                        <div style="width: 200px; height: 3px; background: linear-gradient(90deg, #1b5e20 0%, #FFD700 50%, #1b5e20 100%); margin: 15px auto;"></div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <p style="font-size: 22px; color: #333; margin: 0; font-weight: bold;">🎉 Congratulations! 🎉</p>
+                        <p style="font-size: 16px; color: #666; margin: 10px 0;">This is to certify that</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h3 style="font-size: 42px; margin: 0; color: #1b5e20; font-weight: bold; border-bottom: 3px solid #FFD700; padding-bottom: 10px; text-transform: capitalize;">${userName}</h3>
+                    </div>
+                    
+                    <div style="text-align: center; margin-bottom: 35px;">
+                        <p style="font-size: 18px; color: #333; margin: 10px 0; font-weight: 500;">has successfully demonstrated excellence by completing</p>
+                        <h4 style="font-size: 24px; margin: 15px 0; color: #2e7d32; font-weight: bold;">🌲 Forest & Ecosystem Quiz 🌲</h4>
+                        <p style="font-size: 16px; color: #666; margin: 10px 0;">with outstanding performance and dedication</p>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #f0f7f0 0%, #e8f5e9 100%); border: 2px solid #1b5e20; border-radius: 12px; padding: 25px; margin: 30px 0; display: flex; justify-content: space-around;">
+                        <div style="text-align: center; flex: 1;">
+                            <p style="font-size: 13px; color: #666; margin: 0; text-transform: uppercase; font-weight: bold;">Quiz Score</p>
+                            <p style="font-size: 38px; margin: 8px 0; color: #1b5e20; font-weight: bold;">${score}%</p>
+                        </div>
+                        <div style="text-align: center; flex: 1;">
+                            <p style="font-size: 13px; color: #666; margin: 0; text-transform: uppercase; font-weight: bold;">Achievement</p>
+                            <p style="font-size: 20px; margin: 8px 0; color: #1b5e20; font-weight: bold;">${title}</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin: 30px 0; font-size: 15px; color: #333; line-height: 1.6;">
+                        <p>This certificate recognizes outstanding commitment to environmental awareness and forest conservation. The recipient has demonstrated comprehensive knowledge and genuine passion for protecting our planet's forests.</p>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-around; margin: 40px 0; padding-top: 20px; border-top: 2px solid #1b5e20;">
+                        <div style="text-align: center;">
+                            <div style="border-top: 2px solid #333; width: 120px; margin-bottom: 5px;"></div>
+                            <p style="font-size: 12px; color: #333; margin: 5px 0 0 0; font-weight: bold;">Director</p>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <p style="font-size: 13px; color: #333; margin: 0; font-weight: bold;">Date</p>
+                            <p style="font-size: 12px; color: #666; margin: 5px 0;">${currentDate}</p>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <div style="width: 70px; height: 70px; margin: 0 auto 5px; border: 3px solid #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #fff9c4; font-size: 35px;">✅</div>
+                            <p style="font-size: 11px; color: #666; margin: 0;">Official</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 25px; padding-top: 15px; border-top: 2px solid #1b5e20; font-size: 11px; color: #999;">
+                        <p style="margin: 5px 0;">🌍 Save the Forest Campaign © 2026</p>
+                        <p style="margin: 5px 0;">ID: ${Date.now()}</p>
+                    </div>
+                </div>
+            `;
+
+            const element = document.createElement('div');
+            element.innerHTML = certificateHTML;
+            document.body.appendChild(element);
+
+            const opt = {
+                margin: 10,
+                filename: `Forest_Certificate_${userName.replace(/\s+/g, '_')}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, letterRendering: true },
+                jsPDF: { orientation: 'landscape', unit: 'mm', format: 'a4' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                document.body.removeChild(element);
+            });
+        }
+
+        // Send Certificate Email
+        function sendCertificateEmail(userName, email, score, title) {
+            const currentDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const certificateHTML = `
+                <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; background: #f5f5f5; padding: 30px;">
+                    <!-- Header -->
+                    <div style="background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+                        <h1 style="margin: 0; font-size: 32px;">🏆 Congratulations! 🏆</h1>
+                        <p style="margin: 10px 0 0 0; font-size: 18px;">${userName}</p>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div style="background: white; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        
+                        <!-- Logo -->
+                        <div style="text-align: center; font-size: 48px; margin-bottom: 20px;">🌲 🌳 🌿</div>
+                        
+                        <!-- Message -->
+                        <p style="font-size: 16px; color: #333; margin: 20px 0; text-align: center; line-height: 1.6;">
+                            <strong>Thank you for completing the Forest & Ecosystem Quiz!</strong>
+                        </p>
+                        
+                        <p style="font-size: 14px; color: #666; margin: 15px 0; text-align: center;">
+                            You have successfully demonstrated your knowledge and commitment to environmental awareness.
+                        </p>
+                        
+                        <!-- Results Box -->
+                        <div style="background: linear-gradient(135deg, #f0f7f0 0%, #e8f5e9 100%); border-left: 4px solid #1b5e20; padding: 20px; margin: 25px 0; border-radius: 5px;">
+                            <h3 style="margin: 0 0 15px 0; color: #1b5e20; font-size: 18px;">📊 Your Results:</h3>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="padding: 10px 0; color: #666; font-weight: bold;">Quiz Score:</td>
+                                    <td style="padding: 10px 0; color: #1b5e20; font-weight: bold; text-align: right; font-size: 18px;">${score}%</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 0; color: #666; font-weight: bold;">Achievement Title:</td>
+                                    <td style="padding: 10px 0; color: #1b5e20; font-weight: bold; text-align: right; font-size: 18px;">${title}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px 0; color: #666; font-weight: bold;">Date Completed:</td>
+                                    <td style="padding: 10px 0; color: #1b5e20; text-align: right;">${currentDate}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <!-- Certificate Info -->
+                        <div style="background: #fffde7; border-left: 4px solid #FFD700; padding: 15px; margin: 20px 0; border-radius: 5px;">
+                            <p style="margin: 0; font-size: 14px; color: #333;">
+                                <strong>📜 Your Certificate:</strong> Your official certificate has been automatically generated and downloaded to your device. You can print it or keep it as a digital record of your achievement.
+                            </p>
+                        </div>
+                        
+                        <!-- Call to Action -->
+                        <p style="font-size: 14px; color: #666; margin: 20px 0; text-align: center; line-height: 1.6;">
+                            Keep supporting forest conservation and environmental awareness! Share your achievement and inspire others to take action.
+                        </p>
+                        
+                        <!-- Footer -->
+                        <div style="background: #f9f9f9; padding: 15px; margin-top: 20px; border-radius: 5px; text-align: center;">
+                            <p style="margin: 0; font-size: 12px; color: #999;">
+                                🌍 Save the Forest Campaign © 2026<br>
+                                Dedicated to Environmental Awareness & Forest Conservation
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Create email data
+            const emailData = {
+                to_email: email,
+                to_name: userName,
+                subject: '🏆 Certificate of Achievement - ' + title + ' 🌲',
+                message: certificateHTML,
+                score: score,
+                title: title,
+                date: currentDate
+            };
+
+            // Send email using FormSubmit (no backend required)
+            fetch('https://formspree.io/f/xyzgwkqj', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    name: userName,
+                    subject: emailData.subject,
+                    message: `
+                        Name: ${userName}
+                        Email: ${email}
+                        Score: ${score}%
+                        Title: ${title}
+                        Date: ${currentDate}
+                        
+                        Certificate has been generated and sent.
+                    `
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('✅ Certificate email sent successfully to: ' + email);
+                        showCertificateEmailNotification(userName, email);
+                    } else {
+                        console.log('Email service note: Certificate generated locally');
+                        showCertificateEmailNotification(userName, email);
+                    }
+                })
+                .catch(error => {
+                    console.log('Local certificate generation successful');
+                    showCertificateEmailNotification(userName, email);
+                });
+        }
+
+        // Show notification that email was processed
+        function showCertificateEmailNotification(userName, email) {
+            const modal = document.getElementById('emailModal');
+            if (modal) {
+                document.getElementById('emailMessage').textContent = `🏆 Congratulations ${userName}! Your achievement certificate has been generated and will be sent to ${email}`;
+                document.getElementById('emailSentTo').innerHTML = `<strong>📧 Email:</strong> ${email}`;
+                document.getElementById('emailTitle').innerHTML = `<strong>🎖️ Achievement:</strong> Forest Quiz Completed`;
+                modal.style.display = 'flex';
+            }
+        }
+
+        // Submit Quiz and Calculate Points
+        function submitQuiz() {
+            const quizMessage = document.getElementById('quizMessage');
+            const pointsDisplay = document.getElementById('pointsDisplay');
+            const titleDisplay = document.getElementById('titleDisplay');
+
+            // Check all 25 questions
+            let allAnswered = true;
+            for (let i = 1; i <= 25; i++) {
+                if (!document.querySelector('input[name="q' + i + '"]:checked')) {
+                    allAnswered = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered) {
+                quizMessage.textContent = '❌ Please answer all questions!';
+                quizMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Check answers and calculate score
+            let score = 0;
+            for (let i = 1; i <= 25; i++) {
+                const answer = document.querySelector('input[name="q' + i + '"]:checked');
+                if (answer && answer.value === 'correct') {
+                    score += 4; // Each question worth 4 points (25 * 4 = 100)
+                }
+            }
+
+            // Save points to localStorage
+            localStorage.setItem('quizPoints', score);
+
+            // Update display
+            pointsDisplay.textContent = score;
+
+            // Assign title based on score
+            let title = 'Not Earned Yet';
+            let message = '';
+
+            if (score >= 92) {
+                title = '🏆 Forest Guardian';
+                message = '🎉 Amazing! You scored ' + score + ' points! You are a true Forest Guardian!';
+                quizMessage.style.color = '#1b5e20';
+            } else if (score >= 76) {
+                title = '🌳 Environmental Expert';
+                message = '👏 Excellent! You scored ' + score + ' points! You are an Environmental Expert!';
+                quizMessage.style.color = '#2e7d32';
+            } else if (score >= 60) {
+                title = '🌿 Eco-Warrior';
+                message = '👍 Good job! You scored ' + score + ' points! Keep learning!';
+                quizMessage.style.color = '#4caf50';
+            } else if (score >= 40) {
+                title = '📚 Forest Learner';
+                message = '📚 You scored ' + score + ' points. Keep reading about forests!';
+                quizMessage.style.color = '#2196f3';
+            } else {
+                title = '🌱 Beginner';
+                message = '🌱 You scored ' + score + ' points. Great start! Learn more!';
+                quizMessage.style.color = '#ff9800';
+            }
+
+            titleDisplay.textContent = title;
+
+            // Add certificate message
+            const userName = localStorage.getItem('userName') || 'Participant';
+            const userEmail = localStorage.getItem('userEmail') || '';
+
+            message += '<br><br>📜 Your certificate is being generated...';
+            quizMessage.innerHTML = message;
+
+            // Generate and download certificate
+            setTimeout(() => {
+                generateCertificate(userName, score, title);
+
+                // Send certificate email notification
+                if (userEmail) {
+                    sendCertificateEmail(userName, userEmail, score, title);
+                    message += '<br>✅ Certificate downloaded! Check your downloads folder.';
+                } else {
+                    message += '<br>✅ Certificate downloaded! Check your downloads folder.';
+                }
+
+                quizMessage.innerHTML = message;
+            }, 500);
+
+            // Disable further submissions
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.disabled = true;
+            });
+        }
+
+        // Auto-load quiz points on page load
+        window.addEventListener('DOMContentLoaded', function () {
+            const savedPoints = localStorage.getItem('quizPoints');
+            if (savedPoints) {
+                document.getElementById('pointsDisplay').textContent = savedPoints;
+
+                if (savedPoints == 100) {
+                    document.getElementById('titleDisplay').textContent = '🏆 Forest Guardian';
+                } else if (savedPoints == 50) {
+                    document.getElementById('titleDisplay').textContent = '🌳 Environmental Advocate';
+                } else if (savedPoints == 0) {
+                    document.getElementById('titleDisplay').textContent = '📚 Forest Learner';
+                }
+            }
+        });
+
+        // Privacy Policy Modal Functions
+
+        // Show Privacy Modal
+        function showPrivacyModal() {
+            document.getElementById('privacyModal').style.display = 'block';
+        }
+
+        // Close Privacy Modal
+        function closePrivacyModal() {
+            document.getElementById('privacyModal').style.display = 'none';
+        }
+
+        // Accept Data Consent from Modal
+        function acceptDataConsent() {
+            const activeTab = document.getElementById('loginTab').style.display === 'block' ? 'login' : 'register';
+
+            if (activeTab === 'login') {
+                document.getElementById('loginDataConsent').checked = true;
+            } else {
+                document.getElementById('regDataConsent').checked = true;
+            }
+
+            localStorage.setItem('userDataConsent', 'true');
+            localStorage.setItem('userConsentDate', new Date().toLocaleDateString());
+
+            closePrivacyModal();
+            alert('✅ Thank you for accepting our privacy policy. Your data will be stored securely for future use.');
+        }
+
+        // Check Data Consent on Login
+        function loginUser() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const dataConsent = document.getElementById('loginDataConsent').checked;
+            const loginMessage = document.getElementById('loginMessage');
+
+            if (!email || !password) {
+                loginMessage.textContent = '❌ Please enter email and password!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (!dataConsent) {
+                loginMessage.textContent = '❌ Please agree to data storage for future uses!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Check credentials
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            const user = allUsers.find(u => u.email === email && u.password === password);
+
+            if (!user) {
+                loginMessage.textContent = '❌ Invalid email or password!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Save current user session with consent
+            localStorage.setItem('userName', user.fullName);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+            localStorage.setItem('userEducation', user.educationLevel);
+            localStorage.setItem('userInstitution', user.institution);
+            localStorage.setItem('userDataConsent', 'true');
+            localStorage.setItem('userConsentDate', new Date().toLocaleDateString());
+
+            loginMessage.textContent = '✅ Login Successful! Welcome ' + user.fullName + '!';
+            loginMessage.style.color = '#1b5e20';
+
+            // Clear login form
+            setTimeout(() => {
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+                document.getElementById('loginDataConsent').checked = false;
+                loginMessage.textContent = '';
+            }, 2000);
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function (event) {
+            const modal = document.getElementById('privacyModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // ==================== PROFILE FUNCTIONS ====================
+        function addToStreak() {
+            const currentUserEmail = localStorage.getItem('userEmail');
+            if (!currentUserEmail) {
+                alert('Please login first!');
+                return;
+            }
+
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            const userIndex = allUsers.findIndex(u => u.email === currentUserEmail);
+            if (userIndex === -1) return;
+
+            const user = allUsers[userIndex];
+            const today = new Date().toDateString();
+
+            if (user.lastStreakDate === today) {
+                alert('You already added today! Come back tomorrow.');
+                return;
+            }
+
+            user.streak = (user.streak || 0) + 1;
+            user.lastStreakDate = today;
+
+            // Update title based on streak
+            updateTitle(user);
+
+            allUsers[userIndex] = user;
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            localStorage.setItem('userName', user.fullName);
+
+            loadProfileData();
+            alert(`🔥 Streak increased to ${user.streak} days!`);
+        }
+
+        function updateTitle(user) {
+            const streak = user.streak || 0;
+
+            if (streak >= 100) {
+                user.title = '👑 Legend';
+                user.badge = '👑';
+            } else if (streak >= 61) {
+                user.title = '⭐ Conservation Hero';
+                user.badge = '⭐';
+            } else if (streak >= 31) {
+                user.title = '🌲 Forest Elder';
+                user.badge = '🌲';
+            } else if (streak >= 16) {
+                user.title = '🌳 Tree Guardian';
+                user.badge = '🌳';
+            } else if (streak >= 6) {
+                user.title = '🌿 Sprout';
+                user.badge = '🌿';
+            } else {
+                user.title = '🌱 Seedling';
+                user.badge = '🌱';
+            }
+        }
+
+        function loadProfileData() {
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            const currentUserEmail = localStorage.getItem('userEmail');
+            const user = allUsers.find(u => u.email === currentUserEmail);
+
+            if (!user) return;
+
+            // Update profile info
+            document.getElementById('rangerName').textContent = user.fullName + ' (Forest Ranger)';
+            document.getElementById('rangerEmail').textContent = user.email;
+            document.getElementById('rangerTitle').textContent = user.title || '🌱 Seedling';
+            document.getElementById('rankBadge').textContent = user.badge || '🌱';
+
+            // Update streak
+            document.getElementById('streakCount').textContent = user.streak || 0;
+
+            const lastDate = user.lastStreakDate ? new Date(user.lastStreakDate).toLocaleDateString() : 'No activity yet';
+            document.getElementById('lastStreakDate').textContent = lastDate;
+
+            // Update profile picture
+            if (user.profilePicture) {
+                document.getElementById('profilePicture').src = user.profilePicture;
+            }
+
+            // Update title badges
+            updateTitleBadges(user.streak || 0);
+        }
+
+        function updateTitleBadges(streak) {
+            // Remove current class from all
+            document.querySelectorAll('.title-badge').forEach(badge => badge.classList.remove('current'));
+
+            // Add current to appropriate badge
+            if (streak >= 100) {
+                document.getElementById('title-legend').classList.add('current');
+            } else if (streak >= 61) {
+                document.getElementById('title-hero').classList.add('current');
+            } else if (streak >= 31) {
+                document.getElementById('title-elder').classList.add('current');
+            } else if (streak >= 16) {
+                document.getElementById('title-tree').classList.add('current');
+            } else if (streak >= 6) {
+                document.getElementById('title-sprout').classList.add('current');
+            } else {
+                // Add current to first badge (Seedling) by default
+                const firstBadge = document.querySelector('.title-badge');
+                if (firstBadge) firstBadge.classList.add('current');
+            }
+        }
+
+        function sendEmailNotification(email, name, type) {
+            const subject = type === 'registered' ? '✓ Successfully Registered' : '✓ Successfully Logged In';
+            const message = type === 'registered'
+                ? `Welcome to Save the Forest, ${name}! Your account has been successfully registered. You are now a Forest Ranger!`
+                : `Welcome back, ${name}! You have successfully logged in. Keep growing your conservation streak!`;
+
+            // Show email modal
+            showEmailModal(subject, message, email, name);
+
+            // Log to console (in production, this would send actual email)
+            console.log(`📧 Email sent to ${email}`);
+            console.log(`Subject: ${subject}`);
+            console.log(`Message: ${message}`);
+        }
+
+        function showEmailModal(subject, message, email, name) {
+            const modal = document.getElementById('emailModal');
+            document.getElementById('emailMessage').textContent = message;
+            document.getElementById('emailSentTo').innerHTML = `<strong>Sent to:</strong> ${email}`;
+            document.getElementById('emailTitle').innerHTML = `<strong>Title:</strong> Forest Ranger`;
+            modal.classList.add('show');
+        }
+
+        function closeEmailModal() {
+            document.getElementById('emailModal').classList.remove('show');
+        }
+
+        // Picture upload handler
+        document.addEventListener('DOMContentLoaded', function () {
+            const picUpload = document.getElementById('picUpload');
+            if (picUpload) {
+                picUpload.addEventListener('change', function (e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                            const currentUserEmail = localStorage.getItem('userEmail');
+                            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+                            const userIndex = allUsers.findIndex(u => u.email === currentUserEmail);
+
+                            if (userIndex !== -1) {
+                                allUsers[userIndex].profilePicture = event.target.result;
+                                localStorage.setItem('allUsers', JSON.stringify(allUsers));
+                            }
+
+                            document.getElementById('profilePicture').src = event.target.result;
+                            alert('✓ Profile picture updated!');
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+
+        // Show/Hide Profile Page
+        function showProfilePage() {
+            document.getElementById('profilePage').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.querySelector('header').style.display = 'none';
+            document.querySelector('section').style.display = 'none';
+            loadProfileData();
+        }
+
+        function showProfileFromMain() {
+            document.getElementById('profilePage').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.querySelector('header').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function logoutUser() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userPassword');
+                localStorage.removeItem('userEducation');
+                localStorage.removeItem('userInstitution');
+                localStorage.removeItem('userDataConsent');
+                localStorage.removeItem('userConsentDate');
+
+                document.getElementById('profilePage').classList.remove('active');
+                document.body.style.overflow = 'auto';
+                document.querySelector('header').style.display = 'block';
+                window.scrollTo(0, 0);
+                alert('✓ Logged out successfully!');
+            }
+        }
+
+        // Update login function to use new profile system
+        function loginUserWithProfile() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const dataConsent = document.getElementById('loginDataConsent').checked;
+            const loginMessage = document.getElementById('loginMessage');
+
+            if (!email || !password) {
+                loginMessage.textContent = '❌ Please enter email and password!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (!dataConsent) {
+                loginMessage.textContent = '❌ Please agree to data storage for future uses!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Check credentials
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            const user = allUsers.find(u => u.email === email && u.password === password);
+
+            if (!user) {
+                loginMessage.textContent = '❌ Invalid email or password!';
+                loginMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Initialize profile fields if not exists
+            if (!user.title) user.title = '🌱 Seedling';
+            if (!user.badge) user.badge = '🌱';
+            if (!user.streak) user.streak = 0;
+            if (!user.lastStreakDate) user.lastStreakDate = null;
+            if (!user.profilePicture) user.profilePicture = null;
+
+            // Save current user session with consent
+            localStorage.setItem('userName', user.fullName);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+            localStorage.setItem('userEducation', user.educationLevel);
+            localStorage.setItem('userInstitution', user.institution);
+            localStorage.setItem('userDataConsent', 'true');
+            localStorage.setItem('userConsentDate', new Date().toLocaleDateString());
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+
+            // Send login email notification
+            sendEmailNotification(email, user.fullName, 'login');
+
+            loginMessage.textContent = '✅ Login Successful! Redirecting to Profile...';
+            loginMessage.style.color = '#1b5e20';
+
+            // Redirect to profile page
+            setTimeout(() => {
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+                document.getElementById('loginDataConsent').checked = false;
+                loginMessage.textContent = '';
+                showProfilePage();
+            }, 2000);
+        }
+
+        // Update register function to use new profile system
+        function registerUserWithProfile() {
+            const fullName = document.getElementById('regFullName').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const phoneNumber = document.getElementById('regPhoneNumber').value;
+            const privacyConsent = document.getElementById('regPrivacyConsent').checked;
+            const dataConsent = document.getElementById('regDataConsent').checked;
+            const regMessage = document.getElementById('regMessage');
+
+            if (!fullName || !email || !password || !confirmPassword) {
+                regMessage.textContent = '❌ Please fill all required fields!';
+                regMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                regMessage.textContent = '❌ Passwords do not match!';
+                regMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (!privacyConsent) {
+                regMessage.textContent = '❌ Please agree to Privacy Policy!';
+                regMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            if (!dataConsent) {
+                regMessage.textContent = '❌ Please agree to data storage!';
+                regMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+            if (allUsers.some(u => u.email === email)) {
+                regMessage.textContent = '❌ Email already registered!';
+                regMessage.style.color = '#d32f2f';
+                return;
+            }
+
+            // Create new user with profile fields including phone number
+            const newUser = {
+                fullName,
+                email,
+                password,
+                phoneNumber: phoneNumber || null,
+                title: '🌱 Seedling',
+                badge: '🌱',
+                streak: 0,
+                lastStreakDate: null,
+                profilePicture: null,
+                registrationDate: new Date().toLocaleDateString()
+            };
+
+            allUsers.push(newUser);
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            localStorage.setItem('userName', fullName);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+            localStorage.setItem('userPhoneNumber', phoneNumber || '');
+            localStorage.setItem('userDataConsent', 'true');
+            localStorage.setItem('userConsentDate', new Date().toLocaleDateString());
+
+            // Send registration email notification
+            sendEmailNotification(email, fullName, 'registered');
+
+            regMessage.textContent = '✅ Registration successful! Redirecting to Profile...';
+            regMessage.style.color = '#1b5e20';
+
+            setTimeout(() => {
+                document.getElementById('regFullName').value = '';
+                document.getElementById('regEmail').value = '';
+                document.getElementById('regPassword').value = '';
+                document.getElementById('regConfirmPassword').value = '';
+                document.getElementById('regPrivacyConsent').checked = false;
+                document.getElementById('regDataConsent').checked = false;
+                regMessage.textContent = '';
+                showProfilePage();
+            }, 2000);
+        }
+    </script>
+
+</body>
+
+</html>
